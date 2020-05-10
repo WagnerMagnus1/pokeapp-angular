@@ -1,0 +1,8 @@
+<app-loading *ngIf="loading" message="Carregando Pokémons..."></app-loading>
+<div class="margin-top-100"></div>
+<div *ngIf="pokemons.length > 0">
+  <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+</div>
+<div *ngIf="!loading && pokemons.length == 0">
+  <div class="card-panel red lighten-1 white-text">Não conseguimos conectar com a API :/</div>
+</div>

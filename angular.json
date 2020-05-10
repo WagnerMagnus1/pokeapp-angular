@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "star-wars": {
+    "pokeapp-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/star-wars",
+            "outputPath": "dist/pokeapp-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/materialize-css/dist/css/materialize.min.css",
+              "node_modules/@mdi/font/css/materialdesignicons.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/materialize-css/dist/js/materialize.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "star-wars:build"
+            "browserTarget": "pokeapp-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "star-wars:build:production"
+              "browserTarget": "pokeapp-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "star-wars:build"
+            "browserTarget": "pokeapp-angular:build"
           }
         },
         "test": {
@@ -114,15 +119,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "star-wars:serve"
+            "devServerTarget": "pokeapp-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "star-wars:serve:production"
+              "devServerTarget": "pokeapp-angular:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "star-wars"
+  "defaultProject": "pokeapp-angular"
 }

@@ -1,0 +1,13 @@
+<ul class="collection with-header">
+  <li class="collection-header yellow darken-2">
+    <h4 class="white-text">Pokémons encontrados</h4>
+    <input placeholder="Pesquise seu pokémon aqui" [(ngModel)]="query" id="first_name" type="text" class="white input-search">
+  </li>
+  <li *ngFor="let pokemon of pokemons | search:'name':query" class="collection-item capitalize">
+    <div (click)="detail(pokemon)">{{pokemon.name}}<a class="secondary-content"><i class="material-icons text-darken-2 yellow-text">send</i></a></div>
+  </li>
+</ul>
+<a *ngIf="!loading" (click)="callMorePokemons()" class="waves-effect waves-light btn yellow darken-2">Carregar Mais</a>
+<br>
+<app-loading *ngIf="loading" message="Buscando mais pokémons..."></app-loading>
+

@@ -5,9 +5,15 @@
     "module": "commonjs",
     "target": "es5",
     "types": [
+      "jquery",
+      "materialize-css",
       "jasmine",
       "jasminewd2",
       "node"
+    ],
+    "exclude": [
+      "src/test.ts",
+      "**/*.spec.ts"
     ]
   }
 }
