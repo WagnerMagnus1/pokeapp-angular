@@ -14,6 +14,7 @@ import { PokemonListComponent } from './pages/pokemon/components/pokemon-list/po
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
+import { ModalModule } from './_modal';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ModalModule
   ],
   providers: [
     PokemonRepository,

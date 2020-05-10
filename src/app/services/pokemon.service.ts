@@ -7,6 +7,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { PokemonRepository } from '../repositories/pokemon.repository';
 import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs';
+import { PokemonDetailModel } from '../models/pokemon-detail.model';
 
 @Injectable()
 export class PokemonService implements IPokemonService {
@@ -16,17 +17,21 @@ export class PokemonService implements IPokemonService {
 
   getAllPokemons(offset: number, limit: number): Observable<Array<PokemonModel>>{
     let observable = Observable.create(observer => {
-      setTimeout(() => {
         this.pokemonRepository.get('pokemon/?offset='+offset+'&limit='+limit, null).subscribe((data)=>{
           observer.next(this.orderListPokemonByName(data.results));
         }, (erro)=>{console.log(erro); return []});
-      }, 5000);
     });
     return observable;
   }
 
-  searchPokemonByName(name: string): Array<PokemonModel> {
-    throw new Error("Method not implemented.");
+  getPokemonDetail(url: string): Observable<PokemonDetailModel>{
+    let observable = Observable.create(observer => {
+        let id = this.getIdPokemonFromUrl(url);
+        this.pokemonRepository.get('pokemon/'+id, null).subscribe((data)=>{
+          observer.next(data);
+        }, (erro)=>{console.log(erro); return []});
+    });
+    return observable;
   }
 
   orderListPokemonByName(pokemons: Array<PokemonModel>){
@@ -36,5 +41,11 @@ export class PokemonService implements IPokemonService {
       return 0;
     });
     return pokemons;
+  }
+
+  getIdPokemonFromUrl(url: string): string{
+    var parts = url.split('/');
+    var lastSegment = parts.pop() || parts.pop();
+    return lastSegment;
   }
 }
