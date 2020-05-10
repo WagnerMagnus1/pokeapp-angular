@@ -26,7 +26,6 @@ export class PokemonListComponent implements OnInit {
   detail(pokemon: PokemonModel) {
     this.service.getPokemonDetail(pokemon.url).subscribe(data=>{
       this.pokemonDetails = data;
-      console.log(this.pokemonDetails);
     }, error => {
       console.error(error);
     });

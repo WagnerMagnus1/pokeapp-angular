@@ -19,7 +19,7 @@ export class PokemonService implements IPokemonService {
     let observable = Observable.create(observer => {
         this.pokemonRepository.get('pokemon/?offset='+offset+'&limit='+limit, null).subscribe((data)=>{
           observer.next(this.orderListPokemonByName(data.results));
-        }, (erro)=>{console.log(erro); return []});
+        }, (erro)=>{console.error(erro); return []});
     });
     return observable;
   }
@@ -29,7 +29,7 @@ export class PokemonService implements IPokemonService {
         let id = this.getIdPokemonFromUrl(url);
         this.pokemonRepository.get('pokemon/'+id, null).subscribe((data)=>{
           observer.next(data);
-        }, (erro)=>{console.log(erro); return []});
+        }, (erro)=>{console.error(erro); return []});
     });
     return observable;
   }
